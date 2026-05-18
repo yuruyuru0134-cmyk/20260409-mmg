@@ -165,7 +165,7 @@
     /* ===== ヒーロー ===== */
     #hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, #0c1a2e 0%, #071020 60%, #0f2440 100%);
+      background: #071020;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -174,13 +174,36 @@
       position: relative;
       overflow: hidden;
     }
+    /* 写真の上に重ねる暗いオーバーレイ（テキスト可読性確保） */
     #hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at 70% 40%, rgba(56,189,248,0.1) 0%, transparent 60%);
+      background: rgba(7, 16, 32, 0.62);
+      z-index: 1;
+      pointer-events: none;
     }
-    .hero-content { position: relative; z-index: 1; }
+    /* スライドショーコンテナ */
+    .hero-slides {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed; /* スクロールしても背景は固定 */
+      opacity: 0;
+      transition: opacity 1.8s ease-in-out;
+    }
+    .hero-slide.active { opacity: 1; }
+    @media (max-width: 767px) {
+      /* iOS Safari は background-attachment:fixed が効かないため切り替え */
+      .hero-slide { background-attachment: scroll; }
+    }
+    .hero-content { position: relative; z-index: 2; }
     .hero-badge {
       display: inline-block;
       background: rgba(56,189,248,0.15);
@@ -241,6 +264,7 @@
       bottom: 32px;
       left: 50%;
       transform: translateX(-50%);
+      z-index: 2;
       color: rgba(255,255,255,0.4);
       font-size: 0.72rem;
       letter-spacing: 0.15em;
@@ -982,6 +1006,15 @@
 
     <!-- ===== ヒーロー ===== -->
     <section id="hero">
+
+      <!-- 背景スライドショー（image/作業写真/ 内の画像を使用） -->
+      <div class="hero-slides" id="hero-slides">
+        <div class="hero-slide" style="background-image:url('image/作業写真/DSC_2482.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('image/作業写真/KIMG1583.JPG')"></div>
+        <div class="hero-slide" style="background-image:url('image/作業写真/横断.jpg')"></div>
+        <div class="hero-slide" style="background-image:url('image/作業写真/森の中の測量作業.png')"></div>
+      </div>
+
       <div class="hero-content">
         <div class="hero-badge">RECRUIT 2026</div>
         <div class="persona-tags">
