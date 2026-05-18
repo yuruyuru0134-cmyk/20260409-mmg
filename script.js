@@ -20,10 +20,27 @@ document.querySelectorAll('.mobile-nav-link').forEach(link => {
   });
 });
 
-/* ===== お問い合わせフォーム バリデーション ===== */
+/* ===== フローティング応募ボタン（ヒーロー通過後に表示） ===== */
+const floatApply = document.getElementById('float-apply');
+const heroSection = document.getElementById('hero');
+const heroObserver = new IntersectionObserver(([entry]) => {
+  floatApply.classList.toggle('visible', !entry.isIntersecting);
+}, { threshold: 0 });
+heroObserver.observe(heroSection);
+
+/* ===== お問い合わせフォーム ===== */
 const form = document.getElementById('contact-form');
 const formSuccess = document.getElementById('form-success');
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// ---------------------------------------------------------------
+// Formspree 設定
+// 1. https://formspree.io にアクセスしてアカウント作成（無料）
+// 2. 「New Form」を作成し、送信先メールアドレスを登録
+// 3. 発行された8文字のフォームIDを下記 FORMSPREE_ID に貼り付ける
+// 例: const FORMSPREE_ID = 'xabc1234';
+// ---------------------------------------------------------------
+const FORMSPREE_ID = 'YOUR_FORM_ID';
 
 function setError(fieldId, errId, show) {
   document.getElementById(fieldId).classList.toggle('is-error', show);
@@ -41,15 +58,45 @@ function validate() {
   return !hasError;
 }
 
-form.addEventListener('submit', e => {
+form.addEventListener('submit', async e => {
   e.preventDefault();
   if (!validate()) {
     const firstErr = form.querySelector('.is-error');
     if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return;
   }
-  form.style.display = 'none';
-  formSuccess.style.display = 'block';
+
+  const btn = form.querySelector('.btn-submit');
+  btn.textContent = '送信中';
+  btn.classList.add('loading');
+  btn.disabled = true;
+
+  // Formspree IDが未設定の場合はデモ動作（実際は送信されません）
+  if (FORMSPREE_ID === 'YOUR_FORM_ID') {
+    await new Promise(r => setTimeout(r, 800));
+    form.style.display = 'none';
+    formSuccess.style.display = 'block';
+    return;
+  }
+
+  try {
+    const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      form.style.display = 'none';
+      formSuccess.style.display = 'block';
+    } else {
+      throw new Error('送信失敗');
+    }
+  } catch {
+    btn.textContent = '送信する';
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    alert('送信に失敗しました。お電話（0771-56-8323）またはお時間をおいて再度お試しください。');
+  }
 });
 
 /* ===== リアルタイムバリデーション ===== */
