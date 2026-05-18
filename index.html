@@ -20,6 +20,9 @@
       overflow-x: hidden;
       word-break: break-word;
       overflow-wrap: break-word;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
     }
     img { max-width: 100%; height: auto; display: block; }
     a { text-decoration: none; color: inherit; }
@@ -69,8 +72,6 @@
       top: 0;
       z-index: 1000;
       background: rgba(12,26,46,0.55);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
       transition: background 0.35s, box-shadow 0.35s;
     }
     #site-header.scrolled {
@@ -295,8 +296,6 @@
       gap: 40px;
       align-items: start;
       background: rgba(255,255,255,0.65);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
       border: 1px solid rgba(255,255,255,0.35);
       border-radius: 16px;
       padding: 40px;
@@ -353,8 +352,6 @@
     }
     .business-card {
       background: rgba(255,255,255,0.65);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
       border: 1px solid rgba(255,255,255,0.35);
       border-radius: 12px;
       padding: 32px 24px;
@@ -484,8 +481,6 @@
       margin-bottom: 40px;
       line-height: 1.9;
       background: rgba(255,255,255,0.65);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
       border: 1px solid rgba(255,255,255,0.35);
       border-radius: 10px;
       padding: 20px 32px;
@@ -503,8 +498,6 @@
     .job-single-wrap { max-width: 860px; margin: 0 auto; }
     .job-card-full {
       background: rgba(255,255,255,0.65);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
       border: 1px solid rgba(255,255,255,0.35);
       border-radius: 16px;
       box-shadow: 0 6px 32px rgba(0,0,0,0.15);
@@ -593,8 +586,6 @@
     }
     .benefit-item {
       background: rgba(255,255,255,0.65);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
       border: 1px solid rgba(255,255,255,0.35);
       border-radius: 10px;
       padding: 28px 20px;
@@ -615,8 +606,6 @@
     }
     .voice-card {
       background: rgba(255,255,255,0.65);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
       border: 1px solid rgba(255,255,255,0.35);
       border-radius: 12px;
       padding: 32px 28px;
@@ -651,8 +640,6 @@
       max-width: 700px;
       margin: 0 auto 32px;
       background: rgba(12,26,46,0.65);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
       border-radius: 10px;
       padding: 20px 32px;
       display: flex;
@@ -668,8 +655,6 @@
       max-width: 700px;
       margin: 0 auto;
       background: rgba(255,255,255,0.65);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
       border: 1px solid rgba(255,255,255,0.35);
       border-radius: 16px;
       padding: 48px 52px;
@@ -967,8 +952,6 @@
     /* ===== こんな方へセクション ===== */
     .persona-section {
       background: rgba(12,26,46,0.65);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
       border-radius: 14px;
       padding: 36px 40px;
       margin-bottom: 48px;
