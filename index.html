@@ -10,14 +10,17 @@
   <style>
     /* ===== リセット & 基本設定 ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 16px; background: #071020; }
+    html { scroll-behavior: smooth; font-size: 16px; background: #071020; overflow-x: hidden; }
     body {
       font-family: 'M PLUS Rounded 1c', sans-serif;
       color: #1c3557;
       background: transparent;
       line-height: 1.8;
+      overflow-x: hidden;
+      word-break: break-word;
+      overflow-wrap: break-word;
     }
-    img { max-width: 100%; height: auto; }
+    img { max-width: 100%; height: auto; display: block; }
     a { text-decoration: none; color: inherit; }
 
     :root {
@@ -806,26 +809,60 @@
       .benefits-grid { grid-template-columns: 1fr 1fr; }
       .voices-grid { grid-template-columns: 1fr 1fr; }
       .business-grid { grid-template-columns: 1fr 1fr; }
-      #about .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      #about .about-grid { grid-template-columns: 1fr; gap: 28px; }
     }
     @media (max-width: 767px) {
-      section { padding: 72px 0; }
+      section { padding: 56px 0; }
+      .container { padding: 0 16px; }
       .nav-links { display: none; }
       .hamburger { display: flex; }
+      /* グリッド */
       .jobs-grid { grid-template-columns: 1fr; }
       .benefits-grid { grid-template-columns: 1fr 1fr; }
       .voices-grid { grid-template-columns: 1fr; }
       .business-grid { grid-template-columns: 1fr; }
-      .form-wrapper { padding: 32px 20px; }
-      .contact-info { padding: 20px; gap: 20px; }
-      .footer-inner { flex-direction: column; gap: 28px; }
       .jobs-two-grid { grid-template-columns: 1fr; }
-      .job-card-header { flex-direction: column; align-items: flex-start; padding: 28px 24px 20px; }
-      .job-sections { padding: 24px 24px 32px; }
-      .job-detail-grid { grid-template-columns: 1fr 1fr; }
+      /* 会社概要 */
+      #about .about-grid { padding: 20px; gap: 20px; }
+      /* 求人カード */
+      .job-card-header { flex-direction: column; align-items: flex-start; padding: 20px 20px 16px; }
+      .job-card-header h3 { font-size: 1.2rem; }
+      .job-sections { padding: 20px 20px 28px; gap: 20px; }
+      .job-detail-grid { grid-template-columns: 1fr; }
+      .btn-apply-card { margin: 12px 16px 24px; }
+      /* 求人導入 */
+      .job-section-intro { padding: 14px 16px; }
+      /* フォーム */
+      .form-wrapper { padding: 28px 16px; }
+      .form-assurance { gap: 12px; flex-direction: column; align-items: center; }
+      /* お問い合わせ */
+      .contact-info { padding: 16px; gap: 12px; flex-direction: column; align-items: center; }
+      /* フッター */
+      .footer-inner { flex-direction: column; gap: 24px; }
+      footer { padding: 36px 16px 24px; }
     }
     @media (max-width: 480px) {
+      section { padding: 44px 0; }
+      .container { padding: 0 12px; }
       .benefits-grid { grid-template-columns: 1fr; }
+      /* ヒーロー */
+      .hero-badge { font-size: 0.7rem; padding: 4px 12px; }
+      .persona-tags { gap: 6px; }
+      .persona-tag { font-size: 0.7rem; padding: 4px 10px; }
+      .btn-primary { padding: 14px 32px; font-size: 0.92rem; }
+      /* 求人カード */
+      .job-card-header { padding: 16px 14px 12px; }
+      .job-sections { padding: 16px 14px 20px; }
+      .job-detail-block { padding: 12px 14px; }
+      .btn-apply-card { margin: 10px 12px 20px; font-size: 0.88rem; }
+      /* フォーム */
+      .form-wrapper { padding: 20px 12px; }
+      .form-group { margin-bottom: 18px; }
+      /* ペルソナ */
+      .persona-section { padding: 20px 14px; border-radius: 10px; }
+      /* フッター */
+      footer { padding: 28px 12px 20px; }
+      .footer-bottom { font-size: 0.72rem; }
     }
 
     /* ===== フローティング応募ボタン ===== */
